@@ -1,0 +1,7 @@
+export const HEADER = {
+  H_MOBILE: 64,
+  H_DESKTOP: 80,
+  H_DESKTOP_OFFSET: 80 - 16,
+}
+
+export const PAYROLL_CONTRACT_ADDRESS = '0xa11548dEE3C0c753FcDaA20a1eb3aD4b9fEeFcD7'
