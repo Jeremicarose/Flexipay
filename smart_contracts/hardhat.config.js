@@ -1,50 +1,17 @@
-require('@nomicfoundation/hardhat-toolbox');
-require('@nomiclabs/hardhat-etherscan');
-require('dotenv').config();
+require("@nomiclabs/hardhat-ethers");
+require("@nomiclabs/hardhat-etherscan");
+require("dotenv").config(); // To load environment variables from .env file
 
-const privateKeys = process.env.PRIVATE_KEYS || '';
-const PRIVATE_KEY_BACKEND = process.env.PRIVATE_KEY_BACKEND;
-
-/** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  solidity: '0.8.20',
+  solidity: "0.8.20",
   networks: {
-    localhost: {},
-    sepolia: {
-      url: `https://eth-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
-      accounts: privateKeys.split(',')
+    baseSepolia: {
+      url: "https://sepolia.base.org", // Base Sepolia RPC URL
+      chainId: 84532, // Chain ID for Base Sepolia
+      accounts: [`0x${process.env.PRIVATE_KEY}`], // Your private key stored in .env file
     },
-    bscTestnet: {
-      url: 'https://data-seed-prebsc-1-s1.binance.org:8545/',
-      chainId: 97,
-      accounts: privateKeys.split(','),
-      gasPrice: 20000000000
-    },
-    'base-sepolia': {
-      url: 'https://sepolia.base.org',
-      accounts: [PRIVATE_KEY_BACKEND],
-      gasPrice: 1000000000
-    },
-    mainnet: {
-      url: 'https://bsc-dataseed.bnbchain.org/',
-      chainId: 56,
-      gasPrice: 20000000000,
-      accounts: privateKeys.split(',')
-    }
   },
   etherscan: {
-    apiKey: {
-      'base-sepolia': process.env.BLOCKSCOUT_API_KEY
-    },
-    customChains: [
-      {
-        network: 'base-sepolia',
-        chainId: 84532,
-        urls: {
-          apiURL: 'https://base-sepolia.blockscout.com/api',
-          browserURL: 'https://base-sepolia.blockscout.com'
-        }
-      }
-    ]
-  }
+    apiKey: process.env.ETHERSCAN_API_KEY, // Optional: for verifying contracts
+  },
 };
