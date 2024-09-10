@@ -1,8 +1,0 @@
-{
-  "base-sepolia": {
-    "ImprovePayroll": {
-      "address": "0x3F40aF802550B304Bd9290cDB033d021a6A62c84",
-      "startBlock": 15091233
-    }
-  }
-}
